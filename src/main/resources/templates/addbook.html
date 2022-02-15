@@ -8,6 +8,8 @@
 <body>
 	<h1>Add book</h1>
 	<div class="col-xs-6">
+		<div class="jumbotron">
+   		 <div class="container">
 		<form class= "form" th:object="${book}" th:action="@{save}" action="#" method="post">
 		  	
 		  	<label for="title">Title</label>
@@ -42,6 +44,8 @@
 		  	<div style="clear: both; display: block; height: 10px;"></div>				
 			<input type="submit" value="Save"></input>
 		</form>
+		</div>
+		</div>
 	</div>
 </body>
 </html>

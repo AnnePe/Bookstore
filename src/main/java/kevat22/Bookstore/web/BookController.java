@@ -3,7 +3,7 @@ package kevat22.Bookstore.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,4 +59,16 @@ public class BookController {
 	    	model.addAttribute("categorys", crepository.findAll());
 	    	return "editBook";
 	    }   
+	  //Tallennus kun kirja editoidaan ja validointi 
+	    @RequestMapping(value = "/saveE", method = RequestMethod.POST)
+	    public String saveE(@Valid Book book, BindingResult bindingResult, Model model ){
+		if (bindingResult.hasErrors()) {
+			System.out.println("Error");
+			model.addAttribute("categorys", crepository.findAll());
+			return ("/editBook");
+		}
+	        repository.save(book);
+	        return "redirect:/booklist";
+	    } 
+	   
 }
