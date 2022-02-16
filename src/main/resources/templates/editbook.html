@@ -1,18 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Book</title>
+    <title>Edit</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+   
   
 </head>
 <body>
-	<h1>Edit book</h1>
+	<h1>Muokkaa kirjan tietoja</h1>
 	<div class="col-xs-6">
 	<div class="jumbotron">
    		 <div class="container">
+   		
 		<form class= "form" th:object="${book}" th:action="@{../saveE}" action="#" method="post">
-			<input  type="hidden" id="id" th:field="*{id}" />
+			<input type="hidden" id="id" th:field="*{id}" />
+		  	
 		  	
 		  	<label for="title">Title</label>
 			<input class="form-control" type="text" id="title" th:field="*{title}" />

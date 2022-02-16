@@ -1,0 +1,17 @@
+CREATE TABLE category
+(id BIGINT NOT NULL AUTO_INCREMENT 
+,name VARCHAR(50) NOT NULL
+,PRIMARY KEY (id)
+);
+
+CREATE TABLE book (
+id BIGINT NOT NULL AUTO_INCREMENT
+, title VARCHAR(50) NOT NULL
+, author VARCHAR(50) NOT NULL
+, isbn VARCHAR(50) NOT NULL
+, price DECIMAL
+, year INT
+, categoryid BIGINT
+, PRIMARY KEY (id)
+, FOREIGN KEY (categoryid) REFERENCES category(id));
+
