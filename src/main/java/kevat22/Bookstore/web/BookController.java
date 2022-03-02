@@ -3,7 +3,7 @@ package kevat22.Bookstore.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +24,20 @@ public class BookController {
 	@Autowired
 	private CategoryRepository crepository;
 	
+	
+	@RequestMapping(value = "/login")
+	public String login(){
+		return "/login";
+	}
+	
 	//näytä kaikki kirjat myös ilman endpointia
 	@RequestMapping(value = {"/", "/booklist"})
 	public String bookList(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
 	}
+	
+	@PreAuthorize("hasAuthority('ADMIN')")//tarkastetaan oikeus
 	 @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	    public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 	    	repository.deleteById(bookId);
@@ -47,7 +55,7 @@ public class BookController {
 		if (bindingResult.hasErrors()) {
 			System.out.println("Error");
 			model.addAttribute("categorys", crepository.findAll());
-			return ("/addBook");
+			return ("/addbook");
 		}
 	        repository.save(book);
 	        return "redirect:/booklist";
@@ -57,7 +65,7 @@ public class BookController {
 	    public String editBook(@PathVariable("id") Long bookId, Model model) {
 	    	model.addAttribute("book", repository.findById(bookId));
 	    	model.addAttribute("categorys", crepository.findAll());
-	    	return "editBook";
+	    	return "editbook";
 	    }   
 	  //Tallennus kun kirja editoidaan ja validointi 
 	    @RequestMapping(value = "/saveE", method = RequestMethod.POST)
