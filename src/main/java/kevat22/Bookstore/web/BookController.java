@@ -43,14 +43,16 @@ public class BookController {
 	    	repository.deleteById(bookId);
 	        return "redirect:../booklist";
 	    }   
-	 @RequestMapping(value = "/add")
+	@PreAuthorize("hasAuthority('ADMIN')")//tarkastetaan oikeus 
+	@RequestMapping(value = "/add")
 	    public String addBook(Model model){
 	    	model.addAttribute("book", new Book());
 	    	model.addAttribute("categorys", crepository.findAll());
 	    	return "/addBook";
 	    } 
 	
-	 @RequestMapping(value = "/save", method = RequestMethod.POST)
+	@PreAuthorize("hasAuthority('ADMIN')")//tarkastetaan oikeus 
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	    public String save(@Valid Book book, BindingResult bindingResult, Model model ){
 		if (bindingResult.hasErrors()) {
 			System.out.println("Error");
@@ -60,14 +62,16 @@ public class BookController {
 	        repository.save(book);
 	        return "redirect:/booklist";
 	    } 
-	// Edit book
+	@PreAuthorize("hasAuthority('ADMIN')")//tarkastetaan oikeus
 	    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	    public String editBook(@PathVariable("id") Long bookId, Model model) {
 	    	model.addAttribute("book", repository.findById(bookId));
 	    	model.addAttribute("categorys", crepository.findAll());
 	    	return "editbook";
 	    }   
+	
 	  //Tallennus kun kirja editoidaan ja validointi 
+	@PreAuthorize("hasAuthority('ADMIN')")//tarkastetaan oikeus
 	    @RequestMapping(value = "/saveE", method = RequestMethod.POST)
 	    public String saveE(@Valid Book book, BindingResult bindingResult, Model model ){
 		if (bindingResult.hasErrors()) {
