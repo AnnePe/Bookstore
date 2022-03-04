@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Book {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Size(min=2, max=20)
