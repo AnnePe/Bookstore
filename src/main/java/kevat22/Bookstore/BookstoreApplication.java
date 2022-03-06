@@ -32,6 +32,8 @@ public class BookstoreApplication {
 		
 		brepository.save(new Book("Kirja", "Anne", 2022,"ISBN-123",1.23,crepository.findByName("LAPSET").get(0)));
 		brepository.save(new Book("Kirja2", "Manne", 2021,"ISBN-456",22.23,crepository.findByName("AIKUISET").get(0)));
+		brepository.save(new Book("Kirja jata", "Manne", 2021,"ISBN-456",22.23,crepository.findByName("AIKUISET").get(0)));
+		brepository.save(new Book("Kirja jata myos", "Manne", 2021,"ISBN-456",22.23,crepository.findByName("AIKUISET").get(0)));
 		
 		// Create users: admin/admin user/user
 		User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
