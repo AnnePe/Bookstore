@@ -25,8 +25,13 @@ public class BookRepositoryTest {
 	@Test
 	public void findByTitleShouldReturnAuthor() {//toimii
 		List<Book> books = repository.findByTitle("Kirja");
-		//assertThat(books).hasSize(1);
 		assertThat(books.get(0).getAuthor()).isEqualTo("Anne");
+		}
+	@Test
+	public void findAuthorShouldReturnSize() {//toimii
+		List<Book> books = repository.findByAuthor("Manne");
+		assertThat(books).hasSize(3);
+		
 		}
 	 @Test
 	 public void createNewBook() {

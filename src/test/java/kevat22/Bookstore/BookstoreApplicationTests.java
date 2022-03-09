@@ -18,7 +18,6 @@ public class BookstoreApplicationTests {//SMOKE TESTING
 	private BookController controller;
 	
 	
-
 	@Test
 	void contextLoads() throws Exception {
 		assertThat(controller).isNotNull();
